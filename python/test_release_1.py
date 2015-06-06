@@ -16,7 +16,7 @@ class Release1Test(BaseTestCase):
 
         self.assertEqual(len(product_items), 0)
 
-    def test_search_by_name_with_button_click(self):
+    def test_search_by_name_with_button_click_1(self):
         main_window = self.driver.find_element_by_id('MainWindow')
 
         search_string = main_window.find_element_by_id('QueryMW')
