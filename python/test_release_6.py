@@ -22,15 +22,21 @@ class Release6Test(BaseTestCase):
         category_select.click()
 
         category_items = category_select.find_elements_by_class_name('ListBoxItem')
-        category_items[0].click()
+
+        for cat_item in category_items:
+            if cat_item.get_attribute('Name') != category_name_before:
+                cat_item.click()
+                break
 
         # CategoryCW
         save_button = change_product_window.find_element_by_id('SaveCW')
         save_button.click()
 
-        items_after = products_list.find_elements_by_class_name('ListViewItem')
+        products_list_after = main_window.find_element_by_id('ProductsMW')
+        items_after = products_list_after.find_elements_by_class_name('ListViewItem')
         item0_after = items_after[0]
         texts_after = item0_after.find_elements_by_class_name('TextBlock')
         category_name_after = texts_after[2].get_attribute('Name')
 
         self.assertNotEqual(category_name_after, category_name_before)
+
